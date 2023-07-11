@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowUp, Trash2 } from "lucide-react";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useEntryActions } from "../../../hooks/useEntryAction";
 import {
   Actions,
@@ -14,6 +14,7 @@ import {
   ContentInnerWrapper,
   ContentImage,
 } from "./styles";
+import { Spinner } from "../../../components/Spinner/Spinner";
 
 interface Props {
   id: string;
@@ -31,7 +32,12 @@ export const Row = ({
   imageUrl,
 }: Props) => {
   const { push } = useRouter();
-  const { handleRemoveEntry, handlePublishEntry } = useEntryActions();
+  const {
+    handleRemoveEntry,
+    handlePublishEntry,
+    isLoadingPublish,
+    isLoadingRemove,
+  } = useEntryActions();
 
   const handleRemoveClick = useCallback(
     () => handleRemoveEntry(id),
@@ -67,10 +73,14 @@ export const Row = ({
       </Content>
       <Actions>
         <ActionButton onClick={handlePublishClick}>
-          {isPublished ? <ArrowDown /> : <ArrowUp />}
+          {isLoadingPublish ? (
+            <Spinner />
+          ) : (
+            <>{isPublished ? <ArrowDown /> : <ArrowUp />}</>
+          )}
         </ActionButton>
         <ActionButton onClick={handleRemoveClick}>
-          <Trash2 />
+          {isLoadingRemove ? <Spinner /> : <Trash2 />}
         </ActionButton>
       </Actions>
     </Container>
