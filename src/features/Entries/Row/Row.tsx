@@ -1,7 +1,7 @@
-import { ArrowDown, ArrowUp, Trash2 } from 'lucide-react';
-import { useRouter } from 'next/router';
-import { useCallback } from 'react';
-import { useEntryActions } from '../../../hooks/useEntryAction';
+import { ArrowDown, ArrowUp, Trash2 } from "lucide-react";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
+import { useEntryActions } from "../../../hooks/useEntryAction";
 import {
   Actions,
   Container,
@@ -13,7 +13,7 @@ import {
   Badge,
   ContentInnerWrapper,
   ContentImage,
-} from './styles';
+} from "./styles";
 
 interface Props {
   id: string;
@@ -35,13 +35,16 @@ export const Row = ({
 
   const handleRemoveClick = useCallback(
     () => handleRemoveEntry(id),
-    [handleRemoveEntry, id],
+    [handleRemoveEntry, id]
   );
 
   const handlePublishClick = useCallback(
     () =>
-      handlePublishEntry({ id, title, description, isPublished }, !isPublished),
-    [handlePublishEntry, id, title, description, isPublished],
+      handlePublishEntry(
+        { id, title, description, isPublished, imageUrl },
+        !isPublished
+      ),
+    [handlePublishEntry, id, title, description, isPublished, imageUrl]
   );
 
   const handleClick = useCallback(() => {
@@ -50,7 +53,7 @@ export const Row = ({
 
   return (
     <Container>
-      <Content className={isPublished ? 'published' : ''} onClick={handleClick}>
+      <Content className={isPublished ? "published" : ""} onClick={handleClick}>
         {imageUrl ? (
           <ContentImage style={{ backgroundImage: `url(${imageUrl})` }} />
         ) : null}
