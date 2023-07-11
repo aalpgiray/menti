@@ -3,6 +3,7 @@ import { Card as DefaultCard } from "../../components/Card/Card";
 import { Spinner as DefaultSpinner } from "../../components/Spinner/Spinner";
 
 export const Container = styled(DefaultCard)`
+  flex: 1;
   max-width: 52rem;
   position: relative;
   max-height: 100%;

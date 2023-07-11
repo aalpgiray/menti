@@ -9,11 +9,9 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-
-  > * {
-    margin-right: 0.75rem;
-    margin-left: 0.75rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Entry = styled(DefaultEntry)`
